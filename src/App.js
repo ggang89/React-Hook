@@ -1,47 +1,25 @@
 import { useState } from "react";
 
+const useInput = (initialValue) => {
+  const [value, setValue] = useState(initialValue);
+  const onChange = (event) => {
+    console.log(event.target.value);
+  };
+  return { value, onChange };
+  //기본값(Mr.)을 value 와 함께 return 하기
+};
 function App() {
-  const [item, setItem] = useState(1);
-  const incrementItem = () => setItem(item + 1);
-  const decrementItem = () => setItem(item - 1);
+  const name = useInput("Mr. ");
+  console.log(name)
   return (
     <div>
-      <h1>Hello {item}</h1>
-      <button onClick={incrementItem}>증가</button>
-      <button onClick={decrementItem}>감소</button>
+      <h1>Hello </h1>
+      {/* <input placeholder="Name" value={name.value} onChange={name.onChange} /> */}
+      <input placeholder="Name" {...name} />
     </div>
   );
 }
 
 //useState 사용전 방식
-export class AppUgly {
-  state = {
-    item: 1,
-  };
-  render() {
-    const { item } = this.state;
-    return (
-      <div>
-        <h1>Hello {item}</h1>
-        <button onClick={this.incrementItem}>증가</button>
-        <button onClick={this.decrementItem}>감소</button>
-      </div>
-    );
-  }
-  incrementItem = () => {
-    this.setState((state) => {
-      return {
-        item: state.tiem + 1,
-      };
-    });
-  };
-  decrementItem = () => {
-    this.setState((state) => {
-      return {
-        item: state.tiem - 1,
-      };
-    });
-  };
-}
 
 export default App;
