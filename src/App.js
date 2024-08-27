@@ -1,15 +1,25 @@
 import { useState } from "react";
 
-const useInput = (initialValue) => {
+export const useInput = (initialValue, validator) => {
   const [value, setValue] = useState(initialValue);
   const onChange = (event) => {
-    console.log(event.target.value);
-  };
+    const {
+      target: { value }
+    } = event;
+    let willUpdate = true;
+    if (typeof validator === "function") {
+      willUpdate = validator(value);
+    }
+    if (willUpdate) {
+      setValue(value);
+    }
+    }
   return { value, onChange };
   //기본값(Mr.)을 value 와 함께 return 하기
 };
 function App() {
-  const name = useInput("Mr. ");
+  const maxLen = value => value.length <= 10 && !value.includes("@");
+  const name = useInput("Mr. ", maxLen);
   console.log(name)
   return (
     <div>
@@ -20,6 +30,6 @@ function App() {
   );
 }
 
-//useState 사용전 방식
+
 
 export default App;
