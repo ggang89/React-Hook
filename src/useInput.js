@@ -3,9 +3,8 @@ import { useState } from "react";
 export const useInput = (initialValue, validator) => {
   const [value, setValue] = useState(initialValue);
   const onChange = (event) => {
-    const {
-      target: { value },
-    } = event;
+    const {target: { value },} = event;
+    console.log("value",value) //value = input text
     let willUpdate = true;
     if (typeof validator === "function") {
       willUpdate = validator(value);
@@ -20,7 +19,7 @@ export const useInput = (initialValue, validator) => {
 export default function UseInputApp() {
   const maxLen = (value) => value.length <= 10 && !value.includes("@");
   const name = useInput("Mr. ", maxLen);
-  console.log(name);
+  //console.log(name);
   return (
     <div>
       <h1>Hello </h1>
