@@ -1,13 +1,12 @@
-import UseInputApp from "./useInput";
-import UseTabs from "./useTabs";
 
+import UseState from "./useState";
 
 function App() {
   
   return (
     <div>
-      <UseInputApp />
-      <UseTabs/>
+     
+      <UseState />
     </div>
   );
 }
