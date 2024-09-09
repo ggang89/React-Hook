@@ -1,12 +1,14 @@
 
-import UseState from "./useState";
+import Slides from "./slides";
+import Slides2 from "./slides2";
+
 
 function App() {
   
   return (
     <div>
-     
-      <UseState />
+     <Slides/>
+     <Slides2/>
     </div>
   );
 }
